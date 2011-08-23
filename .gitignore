@@ -6,3 +6,5 @@ lib
 classes
 build
 /Euler
+.gitignore
+test
