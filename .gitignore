@@ -6,5 +6,5 @@ lib
 classes
 build
 /Euler
-.gitignore
+.DS_Store
 test
