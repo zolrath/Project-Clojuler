@@ -1,7 +1,7 @@
 (ns euler.core
-  (:require [clojure.contrib.string :as str]
+  (:require [clojure.string :as str]
             [clojure.set :as set]) 
-   (:use    [cloure.contrib.math]))
+   (:use    [clojure.contrib.math]))
 
 ;;;; General Math Functions
 
@@ -28,8 +28,11 @@
   "Converts given base 10 number to binary"
   (read-string  (Integer/toBinaryString num)))
 
-(defn palindrome? [input]
+(defn reverse-num [num]
+  (BigInteger. (str/reverse (str num))))
+(defn is-palindrome? [input]
   "Returns true if given input is a palindrome"
-    (let [forward  (str input)
-          reverse  (str/reverse forward)]
+    (let [forward (str input)
+          reverse (str/reverse forward)]
       (= forward reverse)))
+
