@@ -1,10 +1,16 @@
 (ns euler.55
-  (:require [clojure.contrib.string :as str])
+  (:require [clojure.string :as str])
   (:use [euler.core]))
 
-(defn is-binary-palindrome? [num]
-  (and (palindrome? num)
-       (palindrome? (to-binary num))))
+(defn is-lychrel? [num]
+  "Returns true if number never produces palindrome"
+  (loop [number (+ num (reverse-num num))
+         iteration 0]
+    (if (< iteration 50)
+      (if (is-palindrome? number)
+        true
+        (recur (+ number (reverse-num number)) (inc iteration)))
+      false)))
 
-(defn solve36 []
-  (reduce + (filter is-binary-palindrome? (range 1 1000000))))
+(defn solve55 []
+  (count (remove is-lychrel? (range 1 10000))))
