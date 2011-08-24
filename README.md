@@ -24,4 +24,5 @@ Benchmarks
 + [**05**](http://projecteuler.net/index.php?section=problems&id=5) run time: *28.710344 ms*
 + [**10**](http://projecteuler.net/index.php?section=problems&id=10) run time: *252.114590 ms (originally: 117.555661 seconds)*
 + [**11**](http://projecteuler.net/index.php?section=problems&id=11) run time: *238.403763 ms*
++ [**21**](http://projecteuler.net/index.php?section=problems&id=21) run time: *13.299193 sec*
 + [**55**](http://projecteuler.net/index.php?section=problems&id=55) run time: *54.582730 ms*
