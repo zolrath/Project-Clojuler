@@ -17,6 +17,7 @@ being ridiculed by my grandma.
 Benchmarks
 ==========
 
-+ [**10**](http://projecteuler.net/index.php?section=problems&id=10) run time: *252.114590 ms (originally: 117.555661 seconds*
++ [**01**](http://projecteuler.net/index.php?section=problems&id=1) run time: *433.857999 us (that's right, microseconds)*
++ [**10**](http://projecteuler.net/index.php?section=problems&id=10) run time: *252.114590 ms (originally: 117.555661 seconds)*
 + [**11**](http://projecteuler.net/index.php?section=problems&id=11) run time: *238.403763 ms*
 + [**55**](http://projecteuler.net/index.php?section=problems&id=55) run time: *54.582730 ms*
