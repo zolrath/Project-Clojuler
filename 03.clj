@@ -3,8 +3,8 @@
         [criterium.core]
         [clojure.contrib.math]))
 
-; Holy moly I didn't understand Clojure properly when I wrote this
-(comment (defn prime-factor
+; Holy moly I didn't understand Clojure properly when I wrote this:
+(comment (defn old-prime-factor
   "Returns list of prime factors of given number"
   ([num]
     (prime-factor num (primes-to num) '()))
@@ -16,7 +16,7 @@
         (prime-factor (/ mainnum currentprime) (rest primelist) (conj results currentprime))
         (prime-factor mainnum (rest primelist) results)))))))
 
-
+; Compare to new prime factor function:
 (defn prime-factor [num]
   (filter #(zero? (mod num %)) (primes-to (sqrt num))))
 
