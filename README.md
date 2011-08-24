@@ -13,3 +13,8 @@ own files.
 If you see that I'm doing something in an entirely stupid way,
 **please** let me know. I really want to improve, even if that means
 being ridiculed by my grandma.
+
+Benchmarks
+==========
+
++ **11** run time: *238.403763 ms*
