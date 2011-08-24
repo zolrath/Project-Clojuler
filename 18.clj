@@ -1,5 +1,6 @@
 (ns euler.18
-  (:use [euler.core]))
+  (:use [euler.core]
+        [criterium.core]))
 
 (defn merge-rows [row-n row-n-1]
   (map (fn [a [b c]] (+ a (max b c)))

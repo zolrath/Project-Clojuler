@@ -1,6 +1,7 @@
 (ns euler.55
   (:require [clojure.string :as str])
-  (:use [euler.core]))
+  (:use [euler.core]
+        [criterium.core]))
 
 (defn is-lychrel? [num]
   "Returns true if number never produces palindrome"
