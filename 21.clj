@@ -2,10 +2,6 @@
   (:use [euler.core]
         [criterium.core]))
 
-(defn divisors [num]
-  "Returns a list of the divisors of given number"
-  (filter #(zero? (mod num %)) (range 1 (inc (/ num 2)))))
-
 (defn sumdivisors [num]
   "Returns the sum of all divisors of given number"
   (reduce + (divisors num)))
@@ -18,3 +14,6 @@
 (defn amicablepairs [limit]
   "returns list of all amicable pairs up to given limit"
  (filter amicable? (range 1 limit)))
+
+(defn solve21 []
+  (reduce + (amicablepairs 10000)))
