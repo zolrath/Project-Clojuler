@@ -27,77 +27,35 @@
   (let [position (+ x (* y 20))]
         (aget *array* position)))
 
-(defn down-product [x y]
-  (loop [newx x newy y values '() step 0]
-    (let [pos (get-coord newx newy)]
-    (if (>= step 4)
-      (reduce * values)
-      (if (> (+ newy 1) 19)
-        0 
-        (recur newx (+ newy 1) (conj values pos) (inc step)))))))
 
-(defn up-product [x y]
-  (loop [newx x newy y values '() step 0]
-    (let [pos (get-coord newx newy)]
-    (if (>= step 4)
-      (reduce * values)
-      (if (< (- newy 1) 0)
-        0 
-        (recur newx (- newy 1) (conj values pos) (inc step)))))))
+(defmacro dir-product [dir xdir xop xlimit ydir yop ylimit]
+  "Macro which will sum the four numbers in given directions"
+  `(fn [x# y#] 
+    (loop [newx# x# newy# y# values# '() step# 0]
+    (let [pos# (get-coord newx# newy#)]
+    (if (>= step# 4)
+      (reduce * values#)
+      (case ~dir
+            :diag (do (if (or (~xdir (~xop newx# 1) ~xlimit) (~ydir (~yop newy# 1) ~ylimit)) 
+                          0 
+                          (recur (~xop newx# 1) (~yop newy# 1) (conj values# pos#) (inc step#))))
+            :ud   (do (if (~ydir (~yop newy# 1) ~ylimit)
+                          0 
+                          (recur newx# (~yop newy# 1) (conj values# pos#) (inc step#)))) 
+            :lr   (do (if (~xdir (~xop newx# 1) 0)
+                          0 
+                          (recur (~xop newx# 1) newy# (conj values# pos#) (inc step#))))))))))
 
-(defn right-product [x y]
-  (loop [newx x newy y values '() step 0]
-    (let [pos (get-coord newx newy)]
-    (if (>= step 4)
-      (reduce * values)
-      (if (> (+ newx 1) 19)
-        0
-        (recur (+ newx 1) newy (conj values pos) (inc step)))))))      
 
-(defn left-product [x y]
-  (loop [newx x newy y values '() step 0]
-    (let [pos (get-coord newx newy)]
-    (if (>= step 4)
-      (reduce * values)
-      (if (< (- newx 1) 0)
-        0 
-        (recur (- newx 1) newy (conj values pos) (inc step)))))))
+(def right-down-product (dir-product :diag > + 19 > + 19))
+(def left-down-product (dir-product :diag < - 0 > + 19))
+(def right-up-product (dir-product :diag > + 19 < - 0))
+(def left-up-product (dir-product :diag < - 0 < - 0))
 
-(defn left-up-product [x y]
-  (loop [newx x newy y values '() step 0]
-    (let [pos (get-coord newx newy)]
-    (if (>= step 4)
-      (reduce * values)
-      (if (or (< (- newx 1) 0) (< (- newy 1) 0))
-        0 
-        (recur (- newx 1) (- newy 1) (conj values pos) (inc step)))))))
-
-(defn right-up-product [x y]
-  (loop [newx x newy y values '() step 0]
-    (let [pos (get-coord newx newy)]
-    (if (>= step 4)
-      (reduce * values)
-      (if (or (> (+ newx 1) 19) (< (- newy 1) 0))
-        0 
-        (recur (+ newx 1) (- newy 1) (conj values pos) (inc step)))))))
-
-(defn left-down-product [x y]
-  (loop [newx x newy y values '() step 0]
-    (let [pos (get-coord newx newy)]
-    (if (>= step 4)
-      (reduce * values)
-      (if (or (< (- newx 1) 0) (> (+ newy 1) 19))
-        0 
-        (recur (- newx 1) (+ newy 1) (conj values pos) (inc step)))))))
-
-(defn right-down-product [x y]
-  (loop [newx x newy y values '() step 0]
-    (let [pos (get-coord newx newy)]
-    (if (>= step 4)
-      (reduce * values)
-      (if (or (> (+ newx 1) 19) (> (+ newy 1) 19))
-        0 
-        (recur (+ newx 1) (+ newy 1) (conj values pos) (inc step)))))))
+(def left-product (dir-product :lr < - 0 :none :none :none))
+(def right-product (dir-product :lr > + 19 :none :none :none))
+(def up-product (dir-product :ud :none :none :none < - 0))
+(def down-product (dir-product :ud :none :none :none > + 19))
 
 (defn all-product []
   (for [x (int-array (range 20))
@@ -111,3 +69,5 @@
         (right-down-product x y)
         (right-up-product x y))))
 
+(defn solve11 []
+  (last (sort (flatten (all-product)))))
