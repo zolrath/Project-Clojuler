@@ -17,10 +17,31 @@
 
 (defn is-prime? [n]
   "Returns true if given number is prime"
-   (zero? (count (filter #(zero? (rem n %)) (range 3 n 2)))))
+   (and (not (zero? (mod n 2))) (zero? (count (filter #(zero? (rem n %)) (range 3 (inc (sqrt n)) 2))))))
 
-;;;; Other Functions
-
+(defn primes-to [n]
+  "Returns a list of all primes from 2 to n"
+  (let [n (int n)]
+    (let [root (int (Math/round (Math/floor (Math/sqrt n))))]
+      (loop [i (int 3)
+             a (int-array n)
+             result (list 2)]
+        (if (>= i n)
+          (reverse result)
+          (recur (+ i (int 2))
+                 (if (< i root)
+                   (loop [arr a
+                          inc (+ i i)
+                          j (* i i)]
+                     (if (>= j n)
+                       arr
+                       (recur (do (aset arr j (int 1)) arr)
+                              inc
+                              (+ j inc))))
+                   a)
+                 (if (zero? (aget a i))
+                   (conj result i)
+                   result)))))))
 (defn trinum [num]
   (/ (+ (sq num) num) 2))
 
