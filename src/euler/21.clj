@@ -1,5 +1,6 @@
 (ns euler.21
-  (:use [euler.core]))
+  (:use [euler.core]
+        [criterium.core]))
 
 (defn divisors [num]
   "Returns a list of the divisors of given number"

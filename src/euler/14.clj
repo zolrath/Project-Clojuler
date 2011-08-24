@@ -1,7 +1,6 @@
 (ns euler.14 
-  (:use [euler.core]))
-
-
+  (:use [euler.core]
+        [criterium.core]))
 (defn sq [num]
   (* num num))
 

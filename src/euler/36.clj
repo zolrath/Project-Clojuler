@@ -1,6 +1,7 @@
 (ns euler.36
   (:require [clojure.contrib.string :as str])
-  (:use [euler.core]))
+  (:use [euler.core]
+        [criterium.core]))
 
 (defn is-binary-palindrome? [num]
   (and (palindrome? num)
