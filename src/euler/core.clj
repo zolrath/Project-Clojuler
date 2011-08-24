@@ -56,4 +56,5 @@
     (let [forward (str input)
           reverse (str/reverse forward)]
       (= forward reverse)))
-
+(def fib-seq
+     (lazy-cat [0 1] (map + (rest fib-seq) fib-seq)))
