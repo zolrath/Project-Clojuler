@@ -27,7 +27,9 @@ Benchmarks
 + [**08**](http://projecteuler.net/index.php?section=problems&id=8)  run time: *7.018111   ms*
 + [**09**](http://projecteuler.net/index.php?section=problems&id=9)  run time: *71.728716  ns*
 + [**10**](http://projecteuler.net/index.php?section=problems&id=10) run time: *252.114590 ms*
+
 ### Hole 1: 1.1865 seconds
+
 + [**11**](http://projecteuler.net/index.php?section=problems&id=11) run time: *238.403763 ms*
 + [**21**](http://projecteuler.net/index.php?section=problems&id=21) run time: *13.299193  sec*
 + [**36**](http://projecteuler.net/index.php?section=problems&id=36) run time: *392.405356 ms*
