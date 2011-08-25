@@ -17,7 +17,7 @@
 
 (defn is-prime? [n]
   "Returns true if given number is prime"
-   (zero? (count (filter #(zero? (rem n %)) (range 3 (inc (sqrt n)) 2)))))
+   (and (not (zero? (mod n 2))) (zero? (count (filter #(zero? (rem n %)) (range 3 (inc (sqrt n)) 2))))))
 
 (defn primes-to [n]
   "Returns a list of all primes from 2 to n"
