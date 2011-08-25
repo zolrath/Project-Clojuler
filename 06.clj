@@ -2,17 +2,11 @@
   (:use [euler.core]
         [criterium.core]))
 
-(defn squaretotal [limit]
+(defn square-of-sum [limit]
   (square (reduce + (range 1 (inc limit)))))
 
-(defn squarenums [limit]
+(defn sum-of-squares [limit]
   (reduce + (map square (range 1 (inc limit)))))
 
-(defn square [num]
-  (* num num))
-
-(defn diffsquares [limit]
-  (- (squaretotal limit) (squarenums limit)))
-
-(defn sumdigits [num]
-  (->> num (str) (re-seq #"\d") (vec) (map read-string) (reduce +)))
+(defn solve06 []
+  (- (square-of-sum 100) (sum-of-squares 100)))
