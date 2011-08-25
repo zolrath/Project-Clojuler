@@ -2,13 +2,10 @@
   (:use [euler.core]
         [criterium.core]))
 
- (defn solve09 []
-   "Finds the product abc of the Pythagorean triplet where a + b + c = 1000"
-      (for [c (range 5 500)
-         b (range 4 500)
-         a (range 3 500)
-         :when (and (= (square c) (+ (square b) (square a)))
-                    (< a b c))]
-       (if (= (+ a b c) 1000)
-        (* a b c))))
-
+(defn solve09 [] 
+  "Finds the product of abc of the Pythagorean triplet where a+b+c = 1000"
+  (for [a (range 1 1000)
+        b (range a 1000)
+        c [(- 1000 a b)]
+        :when (= (+ (* a a) (* b b)) (* c c))]
+    (* a b c)))
