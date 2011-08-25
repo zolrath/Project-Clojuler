@@ -5,7 +5,7 @@
 
 ;;;; General Math Functions
 
-(defn sq [num]
+(defn square [num]
   "Returns the square of a given number"
   (* num num))
 
@@ -42,8 +42,9 @@
                  (if (zero? (aget a i))
                    (conj result i)
                    result)))))))
+
 (defn trinum [num]
-  (/ (+ (sq num) num) 2))
+  (/ (+ (square num) num) 2))
 
 (defn to-binary [num]
   "Converts given base 10 number to binary"
@@ -51,10 +52,15 @@
 
 (defn reverse-num [num]
   (BigInteger. (str/reverse (str num))))
+
 (defn is-palindrome? [input]
   "Returns true if given input is a palindrome"
     (let [forward (str input)
           reverse (str/reverse forward)]
       (= forward reverse)))
+
 (def fib-seq
      (lazy-cat [0 1] (map + (rest fib-seq) fib-seq)))
+
+(defn sumdigits [num]
+  (->> num (str) (re-seq #"\d") (vec) (map read-string) (reduce +)))
