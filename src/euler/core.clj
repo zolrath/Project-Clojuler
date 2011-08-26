@@ -9,10 +9,6 @@
   "Returns the square of a given number"
   (* num num))
 
-(defn divisors [num]
-  "Returns a list of the divisors of given number"
-  (filter #(zero? (mod num %)) (range 1 (inc (/ num 2)))))
-
 ;;;; Prime Numbers
 
 (defn is-prime? [n]
@@ -64,3 +60,30 @@
 
 (defn sumdigits [num]
   (->> num (str) (re-seq #"\d") (vec) (map read-string) (reduce +)))
+(defn trinum [num]
+  (/ (* num (inc num)) 2))
+
+(defn factorial [num]
+  (if (zero? num)
+    1
+    (* num (factorial (dec num)))))
+
+(defn divisors [num]
+  "Returns a list of the divisors of given number"
+  (filter #(zero? (mod num %)) (range 1 (inc (/ num 2)))))
+
+(defn prime-factors-of [num]
+  (loop [a (primes-to (inc (sqrt num)))
+        number num 
+        factorlist ()]
+    (if (seq a)
+      (if (zero? (mod number (first a))) 
+        (recur a (/ number (first a)) (conj factorlist (first a)))
+        (recur (rest a) number factorlist))
+      factorlist)))
+
+(defn divisors-count [num]
+  "Multiplies exponents of prime divisors(each incremented by one) to give number of divisors"
+  (reduce * (map inc (map count (partition-by identity (prime-factors-of num))))))
+
+
