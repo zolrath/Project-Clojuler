@@ -5,7 +5,7 @@ A misguided attempt at learning Clojure through Project Euler
 
 I really have no idea what I'm doing. Time to fix that. I'm completely
 new to functional programming and Clojure seems like a great way to try
-it out.
+it out. The solution? Learn to code Clojure via Euler while my friend [Ottiferus](https://github.com/ottiferous/euler) does the same thing in Python! FIGHT!
 
 ### Seriously, I don't know what I'm doing
 
