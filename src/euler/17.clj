@@ -19,8 +19,22 @@
        (map #(Integer/valueOf %))))
 
 (defn find-hundreds [num]
+  "When passed a number ABC, returns A"
   (int (/ num 100)))
 
+(defn find-tens [num]
+  "When passed a number AB, returns A"
+   (int (/ num 10)))
+
+(defn separate-values [num]
+  (let [hundreds (find-hundreds num)
+        tens   (find-tens (- num (* hundreds 100)))
+        ones (- num (* hundreds 100) (* tens 10))]
+    [hundreds tens ones]))
+
+
+; Still need to add recognition of 1 in tens place for teens
 (defn english-num [num]
-  (loop [number num]
-    ()))
+  (let [[hundreds tens ones] (separate-values num)
+        timestens (* tens 10)]
+    (str (get lettermap hundreds) " hundreds " (get lettermap timestens) " " (get lettermap ones))))
