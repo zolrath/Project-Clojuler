@@ -1,6 +1,7 @@
 (ns euler.14 
   (:use [euler.core]
         [criterium.core]))
+
 (defn sq [num]
   (* num num))
 
@@ -9,7 +10,7 @@
          sub 1
          nums '()]
     (let [pascal (/ (* n (- n sub)) 2)]
-      (if (=< n pascal)
+      (if (<= n pascal)
         (recur pascal (inc sub) (conj nums pascal))
         nums))))
 
