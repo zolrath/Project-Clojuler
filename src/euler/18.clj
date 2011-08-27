@@ -1,6 +1,15 @@
 (ns euler.18
   (:use [euler.core]
-        [criterium.core]))
+        [criterium.core])
+  (:require [clojure.contrib.io :as io]))
+
+(def triangle
+(slurp "/users/furd/triangle.txt")) 
+
+(with-open [rdr (io/reader "/users/furd/triangle.txt")]
+(reduce conj [] (line-seq rdr)))
+
+(io/with-in-reader (io/file "/users/furd/triangle.txt") (read) (read))
 
 (defn merge-rows [row-n row-n-1]
   (map (fn [a [b c]] (+ a (max b c)))
@@ -16,4 +25,4 @@
     (doall (map (fn [s] (doall (map #(Integer/parseInt %) (.split s " ")))) (line-seq fbr)))))
 
 (max-path
-  (slurp-triangle "triangle.txt"))
+  (slurp-triangle "/users/furd/triangle.txt"))
