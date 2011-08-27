@@ -9,8 +9,6 @@
   "Returns the square of a given number"
   (* num num))
 
-;;;; Prime Numbers
-
 (defn is-prime? [n]
   "Returns true if given number is prime"
    (zero? (count (filter #(zero? (rem n %)) (range 3 (inc (sqrt n)) 2)))))
@@ -39,14 +37,16 @@
                    (conj result i)
                    result)))))))
 
-(defn trinum [num]
-  (/ (+ (square num) num) 2))
+(defn triangle-num [n]
+  "Returns nth triangle number"
+  (/ (+ (square n) n) 2))
 
 (defn to-binary [num]
   "Converts given base 10 number to binary"
   (read-string  (Integer/toBinaryString num)))
 
 (defn reverse-num [num]
+  "Returns given number, reversed"
   (BigInteger. (str/reverse (str num))))
 
 (defn is-palindrome? [input]
@@ -56,14 +56,15 @@
       (= forward reverse)))
 
 (def fib-seq
+  "Lazy fibonacci sequence. (take 10 fib-seq)"
      (lazy-cat [0 1] (map + (rest fib-seq) fib-seq)))
 
 (defn sumdigits [num]
+  "Sums all the digits of a given number. 123 => 6"
   (->> num (str) (re-seq #"\d") (vec) (map read-string) (reduce +)))
-(defn trinum [num]
-  (/ (* num (inc num)) 2))
 
 (defn factorial [num]
+  "Produces factorial of given number"
   (if (zero? num)
     1
     (* num (factorial (dec num)))))
@@ -73,6 +74,7 @@
   (filter #(zero? (mod num %)) (range 1 (inc (/ num 2)))))
 
 (defn prime-factors-of [num]
+  "Returns the prime factors of a given number."
   (loop [a (primes-to (inc (sqrt num)))
         number num 
         factorlist ()]
