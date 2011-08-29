@@ -13,6 +13,6 @@
 (defn score-name [name]
   (reduce + (map score-letter (seq name))))
 
-(defn score-names []
+(defn solve22 []
   (let [namelist (slurp-names "src/euler/txt/names.txt")]
     (reduce + (map * (iterate inc 1) (map score-name namelist)))))

@@ -37,6 +37,6 @@ The total of every 10 projects will be displayed in **seconds**
 + [**11**](http://projecteuler.net/index.php?section=problems&id=11) run time: *238.403763 ms*
 + [**12**](http://projecteuler.net/index.php?section=problems&id=12) run time: *16227.729 ms*
 + [**13**](http://projecteuler.net/index.php?section=problems&id=13) run time: *5.219533 ms*
-+ [**21**](http://projecteuler.net/index.php?section=problems&id=21) run time: *13299.193  ms*
++ [**21**](http://projecteuler.net/index.php?section=problems&id=21) run time: *2115.568 ms*
 + [**36**](http://projecteuler.net/index.php?section=problems&id=36) run time: *392.405356 ms*
 + [**55**](http://projecteuler.net/index.php?section=problems&id=55) run time: *54.582730  ms*

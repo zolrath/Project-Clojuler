@@ -1,7 +1,8 @@
 (ns euler.core
   (:require [clojure.string :as str]
             [clojure.set :as set]) 
-   (:use    [clojure.contrib.math]))
+  (:use     [clojure.contrib.math]
+            [clojure.contrib.lazy-seqs :only (primes)]))
 
 ;;;; General Math Functions
 
@@ -11,31 +12,7 @@
 
 (defn is-prime? [n]
   "Returns true if given number is prime"
-   (zero? (count (filter #(zero? (rem n %)) (range 3 (inc (sqrt n)) 2)))))
-
-(defn primes-to [n]
-  "Returns a list of all primes from 2 to n"
-  (let [n (int n)]
-    (let [root (int (Math/round (Math/floor (Math/sqrt n))))]
-      (loop [i (int 3)
-             a (int-array n)
-             result (list 2)]
-        (if (>= i n)
-          (reverse result)
-          (recur (+ i (int 2))
-                 (if (< i root)
-                   (loop [arr a
-                          inc (+ i i)
-                          j (* i i)]
-                     (if (>= j n)
-                       arr
-                       (recur (do (aset arr j (int 1)) arr)
-                              inc
-                              (+ j inc))))
-                   a)
-                 (if (zero? (aget a i))
-                   (conj result i)
-                   result)))))))
+   (and (not= 0 (mod n 2)) (zero? (count (filter #(zero? (rem n %)) (range 3 (inc (sqrt n)) 2))))))
 
 (defn triangle-num [n]
   "Returns nth triangle number"
@@ -60,7 +37,7 @@
 
 (defn sumdigits [num]
   "Sums all the digits of a given number. 123 => 6"
-  (->> num (str) (re-seq #"\d") (vec) (map read-string) (reduce +)))
+  (->> num (str) (re-seq #"\d") (map read-string) (reduce +)))
 
 (defn factorial [num]
   "Produces factorial of given number"
@@ -68,23 +45,33 @@
     1
     (* num (factorial (dec num)))))
 
-(defn divisors [num]
-  "Returns a list of the divisors of given number"
-  (filter #(zero? (mod num %)) (range 1 (inc (/ num 2)))))
+(defn primes-to [n]
+  (take-while #(< % n) primes))
 
 (defn prime-factors-of [num]
   "Returns the prime factors of a given number."
-  (loop [a (primes-to (inc (sqrt num)))
-        number num 
-        factorlist ()]
+  (loop [a (primes-to (inc (/ num 2)))
+         number num 
+         factorlist '()]
     (if (seq a)
       (if (zero? (mod number (first a))) 
         (recur a (/ number (first a)) (conj factorlist (first a)))
         (recur (rest a) number factorlist))
       factorlist)))
 
+(defn divisors [num]
+  "Returns a list of the Proper Divisors of given number"
+  (filter #(zero? (mod num %)) (range 1 (inc (/ num 2)))))
+
+(defn sum-divisors [num]
+  "Returns sum of Proper Divisors (not including number itself)"
+  (let [prime-factors (partition-by identity (prime-factors-of num))]
+    (let [sum (reduce * (map #(if (> (count %) 1)
+                                (-> (first %) (expt (inc (count %))) (dec) (/ (dec (first %))))
+                                (inc (first %)))
+                             prime-factors))]
+      (if (= sum 1) 1 (- sum num)))))
+
 (defn divisors-count [num]
   "Multiplies exponents of prime divisors(each incremented by one) to give number of divisors"
   (reduce * (map inc (map count (partition-by identity (prime-factors-of num))))))
-
-
