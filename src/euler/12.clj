@@ -4,12 +4,9 @@
 
 (defn solve12 []
   (loop [a 1]
-    (if (>= (divisors-count (trinum a)) 499)
-      (trinum a)
+    (if (>= (divisors-count (triangle-num a)) 500)
+      (triangle-num a)
       (recur (inc a)))))
 
-(defn solve12b []
-  (for [a (range 1 100)
-        dc (divisors-count (trinum a))
-        :while (< dc 35)]
-    a))
+; Stolen from internet. Uses lazy-seq. Need to learn to use these properly!
+(first (filter #(> (divisors-count %) 500) triangles))
