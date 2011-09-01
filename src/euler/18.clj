@@ -19,3 +19,4 @@
 
 (defn solve18 []
   (max-path (slurp-triangle "src/euler/txt/triangle.txt")))
+

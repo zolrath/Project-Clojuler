@@ -10,6 +10,7 @@
   "Returns the square of a given number"
   (* num num))
 
+
 (defn is-prime? [n]
   "Returns true if given number is prime"
   (and (not= 0 (mod n 2))
@@ -73,22 +74,17 @@
   "Returns a list of the Proper Divisors of given number"
   (filter #(zero? (mod num %)) (range 1 (inc (/ num 2)))))
 
-(defn sum-divisors [num]
-  (reduce + (divisors num)))
-
-(defn inefficient-sum-divisors [num]
-  "Returns sum of Proper Divisors (not including number itself)"
-  (let [prime-factors (partition-by identity (thorough-prime-factors num))]
-    (let [sum (reduce * (map #(if (> (count %) 1)
-                                (-> (first %) (expt (inc (count %))) (dec) (/ (dec (first %))))
-                                (inc (first %)))
-                             prime-factors))]
-      (if (= sum 1) 1 (- sum num)))))
-
-(defn inefficient-divisors-count [num]
-  "Multiplies exponents of prime divisors(each incremented by one) to give number of divisors"
-  (reduce * (map inc (map count (partition-by identity (thorough-prime-factors num))))))
-
 (defn divisors-count [n]
   "Returns total number of divisors of given number"
   (* 2 (count (filter #(zero? (rem n %)) (range 1 (Math/sqrt n))))))
+
+(defn sum-divisors [n]
+  (let [limit (Math/sqrt n)]
+    (loop [i 2
+           sum 1]
+      (cond
+       (= i limit) (+ i sum)
+       (> i limit) sum
+       (zero? (rem n i)) (recur (inc i) (+ sum i (/ n i)))
+       :else             (recur (inc i) sum)))))
+ 
