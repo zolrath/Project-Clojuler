@@ -12,14 +12,14 @@
 (defn abundantlist [start end]
   (filter is-abundant? (range start end)))
 
-(defn abundantsumss []
+(defn abundantsums []
   (let [list (for [a (abundantlist 1 20162)
                    b (abundantlist 1 (inc a))]
                (+ a b))]
     (set list)))
 
 (defn nonabundant []
-  (difference (set (doall (range 1 20162))) (abundantsums)))
+  (difference (set (range 1 20162)) (abundantsums)))
 
 (defn solve23 []
   (reduce + (nonabundant)))
