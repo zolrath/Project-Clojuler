@@ -1,18 +1,11 @@
 Project Clojuler
 ================
-A misguided attempt at learning Clojure through Project Euler
+An attempt at doing Project Euler in Clojure.
 -------------------------------------------------------------
 
-I really have no idea what I'm doing. Time to fix that. I'm completely
-new to functional programming and Clojure seems like a great way to try
-it out. The solution? Learn to code Clojure via Euler while my friend [Ottiferus](https://github.com/ottiferous/euler) does the same thing in Python! FIGHT!
-
-### Seriously, I don't know what I'm doing
-
-If you see that I'm doing something in an entirely stupid way,
-**please** let me know. I really want to improve, even if that means
-being ridiculed by my grandma. I don't think the functional mindset has
-really set in quite yet!
+If you see that I'm doing something in a less than ideal way,
+**please** let me know. I'm always open to learn something new, even if that means
+being ridiculed by my grandma. 
 
 Benchmarks
 ==========
@@ -34,9 +27,9 @@ The total of every 10 projects will be displayed in **seconds**
 
 > ### Hole 1: 1.1865 seconds
 
-+ [**11**](http://projecteuler.net/index.php?section=problems&id=11) run time: *238.403763 ms*
-+ [**12**](http://projecteuler.net/index.php?section=problems&id=12) run time: *16227.729 ms*
-+ [**13**](http://projecteuler.net/index.php?section=problems&id=13) run time: *5.219533 ms*
-+ [**21**](http://projecteuler.net/index.php?section=problems&id=21) run time: *56.396575 ms*
-+ [**36**](http://projecteuler.net/index.php?section=problems&id=36) run time: *392.405356 ms*
-+ [**55**](http://projecteuler.net/index.php?section=problems&id=55) run time: *54.582730  ms*
++ [**11**](http://projecteuler.net/index.php?section=problems&id=11) run time: *238.403763*
++ [**12**](http://projecteuler.net/index.php?section=problems&id=12) run time: *16227.729*
++ [**13**](http://projecteuler.net/index.php?section=problems&id=13) run time: *5.219533*
++ [**21**](http://projecteuler.net/index.php?section=problems&id=21) run time: *56.396575*
++ [**36**](http://projecteuler.net/index.php?section=problems&id=36) run time: *392.405356*
++ [**55**](http://projecteuler.net/index.php?section=problems&id=55) run time: *54.582730*
